@@ -1,0 +1,6 @@
+@SupperDotNetApi_HostAddress = http://localhost:5183
+
+GET {{SupperDotNetApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
