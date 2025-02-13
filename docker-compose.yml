@@ -1,0 +1,47 @@
+name: mysuperdotnetapi
+
+version: '3.9'  # Use a newer version for better profile support
+
+services:
+  # .NET API service
+  supperdotnetapi:
+    build:
+      context: .
+      dockerfile: SupperDotNetApi/Dockerfile  # Path to your Dockerfile
+    container_name: supperdotnetapi
+    ports:
+      - "8040:8040"  # Mapping port 8040 for your application
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - elasticsearch  # Ensure Elasticsearch starts first
+  
+  # Elasticsearch service (No Auth)
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.6.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false  # Disable authentication
+      - xpack.security.enrollment.enabled=false  # Disable enrollment
+      - xpack.security.http.ssl.enabled=false  # Disable SSL for HTTP
+    ports:
+      - "9200:9200"  # Exposes port 9200 for Elasticsearch
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200"]
+      interval: 30s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+  
+  # Kibana service (No Auth)
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.6.0
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200  # Connect Kibana to Elasticsearch
+      - XPACK_SECURITY_ENABLED=false  # Disable security in Kibana
+    ports:
+      - "5601:5601"  # Exposes port 5601 for Kibana
+    depends_on:
+      - elasticsearch
