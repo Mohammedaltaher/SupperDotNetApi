@@ -1,33 +1,34 @@
 using Domain.Entities.Lookups;
 using Application.Features.Lookups.MainCategories.ViewModels;
-using Domain.Enumerations;
 
 namespace Application.Features.Lookups.MainCategories.Commands.Create;
 
-public class CreateMainCategoryHandler : IRequestHandler<CreateMainCategoryCommand, ResponseViewModel<DetailMainCategoryViewModel>>
+public class CreateMainCategoryCommand : IRequest<ResponseViewModel<MainCategoryViewModel>>
 {
-    private readonly IMapper Mapper;
-    private readonly IUnitOfWork UnitOfWork;
+    public string? Name { get; set; }
+    public string? NameAr { get; set; }
 
-    public CreateMainCategoryHandler(IMapper mapper, IUnitOfWork unitofwork)
+    public class Handler(IMapper mapper, IUnitOfWork unitOfWork) : IRequestHandler<CreateMainCategoryCommand, ResponseViewModel<MainCategoryViewModel>>
     {
-        Mapper = mapper;
-        UnitOfWork = unitofwork;
-    }
+        private readonly IMapper _mapper = mapper;
+        private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-    public async Task<ResponseViewModel<DetailMainCategoryViewModel>> Handle(CreateMainCategoryCommand request, CancellationToken cancellationToken)
-    {
-        var getRow = await UnitOfWork.MainCategory.GetAsync(x => x.NameAr == request.NameAr || x.Name == request.Name);
+        public async Task<ResponseViewModel<MainCategoryViewModel>> Handle(CreateMainCategoryCommand request, CancellationToken cancellationToken)
+        {
+            var existingMainCategory = await _unitOfWork.MainCategory.GetAsync(x => x.NameAr == request.NameAr || x.Name == request.Name);
 
-        var model = Mapper.Map<MainCategory>(request);
+            if (existingMainCategory != null)
+                return new ResponseViewModel<MainCategoryViewModel>(FeedBackCode.AlreadyExists);
 
-        UnitOfWork.MainCategory.Insert(model);
-        var isSaved = UnitOfWork.MainCategory.SaveChanges();
+            var mainCategoryModel = _mapper.Map<MainCategory>(request);
+            _unitOfWork.MainCategory.Insert(mainCategoryModel);
 
-        if (isSaved == 0)
-            return new ResponseViewModel<DetailMainCategoryViewModel>(FeedBackCode.NotAccept);
+            var isSaved = await _unitOfWork.MainCategory.SaveChangesAsync(cancellationToken);
+            if (isSaved == 0)
+                return new ResponseViewModel<MainCategoryViewModel>(FeedBackCode.NotAccept);
 
-        var viewModel = await UnitOfWork.MainCategory.GetAsync(x => x.Id == model.Id);
-        return new ResponseViewModel<DetailMainCategoryViewModel>(FeedBackCode.OK, Mapper.Map<DetailMainCategoryViewModel>(viewModel));
+            var createdMainCategory = await _unitOfWork.MainCategory.GetAsync(x => x.Id == mainCategoryModel.Id);
+            return new ResponseViewModel<MainCategoryViewModel>(FeedBackCode.OK, _mapper.Map<MainCategoryViewModel>(createdMainCategory));
+        }
     }
 }

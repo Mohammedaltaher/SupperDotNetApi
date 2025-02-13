@@ -2,8 +2,9 @@
 
 public enum FeedBackCode
 {
-    OK = 200,
+    OK = 1,
     ValidationNotValid = 409,
-    NotAccept = 400
+    NotAccept = 400,
+    AlreadyExists = 410
 }
 

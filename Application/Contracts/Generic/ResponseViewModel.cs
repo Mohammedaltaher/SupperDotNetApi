@@ -1,22 +1,12 @@
-﻿using Domain.Enumerations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Application.Contracts.Generic
 {
     public class ResponseViewModel<T>
     {
         public FeedBackCode Status { get; set; }
-
         public string? Message { get; set; }
-
         public long? Total { get; set; }
-
         public T? Success { get; set; }
-
         public object? Errors { get; set; }
 
         public ResponseViewModel()
@@ -30,7 +20,6 @@ namespace Application.Contracts.Generic
             Total = null;
             Success = default(T);
             Errors = null;
-           
         }
 
         public ResponseViewModel(FeedBackCode status, T? success)
@@ -39,7 +28,6 @@ namespace Application.Contracts.Generic
             Status = status;
             Success = success;
             Errors = null;
-           
         }
 
         public ResponseViewModel(FeedBackCode status, T? success, long? total = null)

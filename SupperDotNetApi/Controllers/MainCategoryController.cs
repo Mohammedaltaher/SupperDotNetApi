@@ -23,7 +23,7 @@ public class MainCategoriesController : BaseController
     //public async Task<ResponseViewModel<List<MainCategoryViewModel>>> GetListAsync(ActionStatus actionStatusId) => await Mediator.Send(new GetMainCategoriesByStatusQuery() { Status = actionStatusId });
 
     [HttpPost("Create")]
-    public async Task<ResponseViewModel<DetailMainCategoryViewModel>> PostAsync([FromBody] CreateMainCategoryCommand model) => await Mediator.Send(model);
+    public async Task<ResponseViewModel<MainCategoryViewModel>> PostAsync([FromBody] CreateMainCategoryCommand model) => await Mediator.Send(model);
 
     //[HttpPut("Update")]
     //public async Task<ResponseViewModel<MainCategoryViewModel>> PutAsync([FromBody] UpdateMainCategoryCommand model) => await Mediator.Send(model);
