@@ -5,15 +5,10 @@ namespace Application.Contracts;
 
 public interface IGenericRepository<T> where T : class
 {
-    Task<T?> GetAsync(Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
-    Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
-    Task<IEnumerable<T>> GetAllAsync(int pageIndex, int pageSize, Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
+    Task<T?> GetAsync(Expression<Func<T, bool>>? filter, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
+    Task<IEnumerable<T>> GetAllAsync(QueryParameters<T> parameters);
 
     Task<int> GetTotalAsync(Expression<Func<T, bool>>? filter = null);
-
-    Task<T?> GetAsyncWithIgnoreQueryFilters(Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? includes = null);
-    Task<IEnumerable<T>> GetAllWithIgnoreQueryFilterAsync(int pageIndex, int pageSize, Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
-    Task<IEnumerable<T>> GetAllWithIgnoreQueryFilterAsync(Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
 
     void Insert(T entity);
     void Insert(IEnumerable<T> entity);

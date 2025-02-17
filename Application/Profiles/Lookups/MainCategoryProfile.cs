@@ -12,12 +12,10 @@ public class MainCategoryProfile : Profile
     {
 
         CreateMap<MainCategory, CreateMainCategoryCommand>().ReverseMap().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-        //CreateMap<MainCategory, UpdateMainCategoryCommand>().ReverseMap().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-        //CreateMap<MainCategory, DeleteMainCategoryCommand>().ReverseMap().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+        CreateMap<MainCategory, UpdateMainCategoryCommand>().ReverseMap().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+        CreateMap<MainCategory, DeleteMainCategoryCommand>().ReverseMap().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
-        CreateMap<MainCategory, MainCategoryViewModel>()
-             .ReverseMap();
-        CreateMap<MainCategory, ListMainCategoryViewModel>()
-             .ReverseMap();
+        CreateMap<MainCategory, MainCategoryViewModel>().ReverseMap();
+        CreateMap<MainCategory, ListMainCategoryViewModel>().ReverseMap();
     }
 }
