@@ -1,10 +1,11 @@
 using Application.Features.Lookups.MainCategories.ViewModels;
+using Application.Utilities;
 using Domain.Entities.Lookups;
 using System.Linq.Expressions;
 
 namespace Application.Features.Lookups.MainCategories.Queries.GetList;
 
-//[Cache(60)]
+[Cache(60)]
 public class GetMainCategoriesQuery : IRequest<ResponseViewModel<List<ListMainCategoryViewModel>>>
 {
     public string? Name { get; set; }

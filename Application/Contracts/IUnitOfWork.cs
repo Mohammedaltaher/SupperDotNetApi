@@ -5,5 +5,4 @@ namespace Application.Contracts;
 public interface IUnitOfWork
 {
     IGenericRepository<MainCategory> MainCategory { get; }
-
 }

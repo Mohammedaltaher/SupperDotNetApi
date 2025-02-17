@@ -1,7 +1,26 @@
-﻿using System.Linq.Expressions;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Linq.Expressions;
+using System.Reflection;
+
+namespace Application.Utilities;
 
 public static class ExpressionHelper
 {
+
+    public static void RegisterValidators(this IServiceCollection services, Assembly assembly)
+    {
+        var validatorType = typeof(IValidator<>);
+        var types = assembly.GetExportedTypes()
+            .Where(x => x.GetInterfaces().Any(y => y.IsGenericType && y.GetGenericTypeDefinition() == validatorType))
+            .ToList();
+
+        foreach (var type in types)
+        {
+            var interfaceType = type.GetInterfaces().First(y => y.IsGenericType && y.GetGenericTypeDefinition() == validatorType);
+            services.AddScoped(interfaceType, type);
+        }
+    }
+
     public static Expression<Func<T, bool>> CombineWithAnd<T>(
         this Expression<Func<T, bool>> first,
         Expression<Func<T, bool>> second)

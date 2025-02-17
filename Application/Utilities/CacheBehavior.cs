@@ -1,45 +1,43 @@
-﻿//using Core.Helper.Implementations;
-//using Domain.ViewModel;
-//using MediatR;
+﻿using System.Text.Json;
 
-//namespace Application.Utilities;
+namespace Application.Utilities;
 
-//[AttributeUsage(AttributeTargets.Class, Inherited = false)]
-//public class CacheAttribute : Attribute
-//{
-//    public int DurationInMinutes { get; }
-//    public CacheAttribute(int durationInMinutes) => DurationInMinutes = durationInMinutes;
-//}
+[AttributeUsage(AttributeTargets.Class, Inherited = false)]
+public class CacheAttribute : Attribute
+{
+    public int DurationInMinutes { get; }
+    public CacheAttribute(int durationInMinutes) => DurationInMinutes = durationInMinutes;
+}
+public class CacheBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : IRequest<TResponse>
+{
+    private readonly IRedisCache _redisCache;
 
-//public class CacheBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-//    where TRequest : IRequest<TResponse>
-//{
-//    private readonly IRedisCache redisCache;
-//    private bool IsRedisWorking = false;
-//    public CacheBehavior(IRedisCache redisCache)
-//    {
-//        this.redisCache = redisCache;
-//    }
-//    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
-//    {
-//        var cacheAttribute = request.GetType().GetCustomAttributes(typeof(CacheAttribute), false).FirstOrDefault() as CacheAttribute;
-//        IsRedisWorking = await redisCache.IsRedisWorkingAsync();
+    public CacheBehavior(IRedisCache redisCache)
+    {
+        _redisCache = redisCache;
+    }
 
-//        if (cacheAttribute == null || !IsRedisWorking)
-//            return await next();
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    {
+        var cacheAttribute = request.GetType().GetCustomAttributes(typeof(CacheAttribute), false).FirstOrDefault() as CacheAttribute;
 
-//        var cacheKey = GenerateCacheKey(request);
 
-//        var contentCache = await redisCache.GetAsync(cacheKey);
+        var cacheKey = GenerateCacheKey(request);
 
-//        if (!string.IsNullOrEmpty(contentCache))
-//            return JsonSerializer.Deserialize<TResponse>(contentCache)!;
+        var cachedResponse = await _redisCache.GetAsync(cacheKey);
+        if (!string.IsNullOrEmpty(cachedResponse))
+        {
+            return JsonSerializer.Deserialize<TResponse>(cachedResponse)!;
+        }
 
-//        var response = await next();
+        var response = await next();
+        await _redisCache.UpdateAsync(cacheKey, JsonSerializer.Serialize(response), 1, cacheAttribute.DurationInMinutes);
+        return response;
+    }
 
-//        await redisCache.UpdateAsync(cacheKey, JsonSerializer.Serialize(response), 1, cacheAttribute.DurationInMinutes);
-
-//        return response;
-//    }
-//    private static string GenerateCacheKey(TRequest request) => $"{typeof(TRequest).FullName}_{JsonSerializer.Serialize(request)}";
-//}
+    private static string GenerateCacheKey(TRequest request)
+    {
+        return $"{typeof(TRequest).FullName}_{JsonSerializer.Serialize(request)}";
+    }
+}

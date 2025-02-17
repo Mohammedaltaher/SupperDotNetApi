@@ -12,11 +12,13 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=MyDatabase;User Id=sa;Password=YourStrong!Passw0rd;
+      - Redis__Configuration=redis:6379
     depends_on:
       - elasticsearch
       - sqlserver
+      - redis
     networks:
-      - mynetwork  # Connect to the same network
+      - mynetwork
 
   # Elasticsearch service (No Auth)
   elasticsearch:
@@ -69,6 +71,21 @@ services:
       interval: 10s
       retries: 5
       start_period: 30s
+      timeout: 5s
+
+  # Redis service
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - mynetwork
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      retries: 5
       timeout: 5s
 
 networks:
