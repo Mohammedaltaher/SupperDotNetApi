@@ -1,13 +1,13 @@
-namespace Application.Features.Lookups.MainCategories.Commands.Update;
+namespace Application.Features.Lookups.Books.Commands.Update;
 
 
-public class UpdateMainCategoryCommandValidator : AbstractValidator<UpdateMainCategoryCommand>
+public class UpdateBookCommandValidator : AbstractValidator<UpdateBookCommand>
 {
-    public UpdateMainCategoryCommandValidator()
+    public UpdateBookCommandValidator()
     {
         RuleFor(command => command.Id)
-            .GreaterThan(0).WithMessage("The Id must be greater than zero.")
-            .NotEmpty().WithMessage("The Id cannot be empty.");
+             .NotEmpty().WithMessage("The Id cannot be empty.")
+             .Must(id => Guid.TryParse(id, out _)).WithMessage("The Id must be a valid GUID.");
 
         RuleFor(command => command.Name)
             .NotEmpty().WithMessage("The Name cannot be empty.")

@@ -14,6 +14,6 @@ public class UnitOfWork : IUnitOfWork
         Context = context;
     }
 
-    private IGenericRepository<MainCategory>? mainCategory;
-    public IGenericRepository<MainCategory> MainCategory => mainCategory ??= new GenericRepository<MainCategory>(Context);
+    private IGenericRepository<Book>? book;
+    public IGenericRepository<Book> Book => book ??= new GenericRepository<Book>(Context);
 }

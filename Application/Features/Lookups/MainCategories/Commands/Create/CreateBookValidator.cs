@@ -1,8 +1,8 @@
-namespace Application.Features.Lookups.MainCategories.Commands.Create;
+namespace Application.Features.Lookups.Books.Commands.Create;
 
-public class CreateMainCategoryValidator : AbstractValidator<CreateMainCategoryCommand>
+public class CreateBookValidator : AbstractValidator<CreateBookCommand>
 {
-    public CreateMainCategoryValidator()
+    public CreateBookValidator()
     {
         RuleFor(c => c.Name)
             .NotEmpty().WithMessage("Name is required")

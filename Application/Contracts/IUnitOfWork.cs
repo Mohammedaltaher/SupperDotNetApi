@@ -4,5 +4,5 @@ namespace Application.Contracts;
 
 public interface IUnitOfWork
 {
-    IGenericRepository<MainCategory> MainCategory { get; }
+    IGenericRepository<Book> Book { get; }
 }

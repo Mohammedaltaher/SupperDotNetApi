@@ -21,7 +21,8 @@ public class CacheBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TR
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         var cacheAttribute = request.GetType().GetCustomAttributes(typeof(CacheAttribute), false).FirstOrDefault() as CacheAttribute;
-
+        if (cacheAttribute == null)
+            return await next();
 
         var cacheKey = GenerateCacheKey(request);
 
