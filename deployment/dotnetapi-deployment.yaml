@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: supperdotnetapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: supperdotnetapi
+  template:
+    metadata:
+      labels:
+        app: supperdotnetapi
+    spec:
+      containers:
+      - name: supperdotnetapi
+        image: yourdockerhubusername/supperdotnetapi:latest
+        ports:
+        - containerPort: 8040
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"
+        - name: ConnectionStrings__DefaultConnection
+          value: "Server=sqlserver;Database=MyDatabase;User Id=sa;Password=YourStrong!Passw0rd;"
+        - name: Redis__Configuration
+          value: "redis:6379"
+        imagePullPolicy: Always

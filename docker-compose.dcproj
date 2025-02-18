@@ -10,10 +10,20 @@
     <DockerServiceName>supperdotnetapi</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="deployment\dotnetapi-service.yaml" />
+    <None Include="deployment\elasticsearch-service.yaml" />
+    <None Include="deployment\kibana-service.yaml" />
+    <None Include="deployment\redis-service.yaml" />
+    <None Include="deployment\sqlserver-service.yaml" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="deployment\kibana-deployment.yaml" />
+    <None Include="deployment\redis-deployment.yaml" />
+    <None Include="deployment\sqlserver-deployment.yaml" />
+    <None Include="deployment\elasticsearch-deployment.yaml" />
+    <None Include="deployment\dotnetapi-deployment.yaml" />
   </ItemGroup>
 </Project>
