@@ -3,27 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupperDotNetApi", "SupperDotNetApi\SupperDotNetApi.csproj", "{16F8D7A2-05B6-4E9D-8B1F-9DC19332AB22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SupperDotNetApi", "SupperDotNetApi\SupperDotNetApi.csproj", "{16F8D7A2-05B6-4E9D-8B1F-9DC19332AB22}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{549DE9E7-19CB-43AA-A243-A331C587A425}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{61321CCD-915B-458C-A537-B7C53E0D86C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{5579B968-8F7D-41DC-8334-33B23B640867}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{BB0C53C0-22D5-4C11-8446-6A595BC0BB40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{D4D9A91B-1D11-44A1-9B29-3565246BA738}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{3B91570F-C4F6-4255-94A1-6398C55D92EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Implementation", "Implementation\Implementation.csproj", "{4E89661D-62B0-4237-82BA-E1F88A63A995}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{25C605A5-35CE-4973-A3FB-1D3FCC1FE56E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{EB25129B-921F-4457-8319-D894ADC7EF47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{5579B968-8F7D-41DC-8334-33B23B640867}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{D4D9A91B-1D11-44A1-9B29-3565246BA738}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Implementation", "Implementation\Implementation.csproj", "{4E89661D-62B0-4237-82BA-E1F88A63A995}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{EB25129B-921F-4457-8319-D894ADC7EF47}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupperDotNetApp.Test", "SupperDotNetApp.Test\SupperDotNetApp.Test.csproj", "{FB6607FF-D0F5-453D-A87C-CF52F843CAD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SupperDotNetApp.Test", "SupperDotNetApp.Test\SupperDotNetApp.Test.csproj", "{FB6607FF-D0F5-453D-A87C-CF52F843CAD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,16 +54,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{BB0C53C0-22D5-4C11-8446-6A595BC0BB40} = {61321CCD-915B-458C-A537-B7C53E0D86C3}
-		{3B91570F-C4F6-4255-94A1-6398C55D92EE} = {61321CCD-915B-458C-A537-B7C53E0D86C3}
-		{25C605A5-35CE-4973-A3FB-1D3FCC1FE56E} = {61321CCD-915B-458C-A537-B7C53E0D86C3}
-		{5579B968-8F7D-41DC-8334-33B23B640867} = {BB0C53C0-22D5-4C11-8446-6A595BC0BB40}
-		{D4D9A91B-1D11-44A1-9B29-3565246BA738} = {BB0C53C0-22D5-4C11-8446-6A595BC0BB40}
-		{4E89661D-62B0-4237-82BA-E1F88A63A995} = {25C605A5-35CE-4973-A3FB-1D3FCC1FE56E}
-		{EB25129B-921F-4457-8319-D894ADC7EF47} = {25C605A5-35CE-4973-A3FB-1D3FCC1FE56E}
-		{FB6607FF-D0F5-453D-A87C-CF52F843CAD2} = {3B91570F-C4F6-4255-94A1-6398C55D92EE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AD60E220-41FD-4F55-8537-D395EFCFC0C6}
