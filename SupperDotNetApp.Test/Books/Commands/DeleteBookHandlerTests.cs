@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
-using Application.Features.Lookups.Books.Commands.Delete;
-using Application.Features.Lookups.Books.ViewModels;
-using Domain.Entities.Lookups;
+using Application.Features.Books.Commands.Delete;
+using Application.Features.Books.ViewModels;
+using Domain.Entities;
 
 namespace Invoices.UnitTest.Books.Commands;
 

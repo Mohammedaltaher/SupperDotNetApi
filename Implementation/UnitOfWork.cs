@@ -1,5 +1,5 @@
 ﻿using Application.Contracts;
-using Domain.Entities.Lookups;
+using Domain.Entities;
 using Repository.Context;
 using Repository.GenericRepository;
 

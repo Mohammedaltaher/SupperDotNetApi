@@ -1,9 +1,9 @@
-using Application.Features.Lookups.Books.ViewModels;
+using Application.Features.Books.ViewModels;
 using Application.Utilities;
-using Domain.Entities.Lookups;
+using Domain.Entities;
 using System.Linq.Expressions;
 
-namespace Application.Features.Lookups.Books.Queries.GetList;
+namespace Application.Features.Books.Queries.GetList;
 
 [Cache(60)]
 public class GetBooksQuery : IRequest<ResponseViewModel<List<ListBookViewModel>>>

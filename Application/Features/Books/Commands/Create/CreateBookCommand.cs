@@ -1,7 +1,7 @@
-using Domain.Entities.Lookups;
-using Application.Features.Lookups.Books.ViewModels;
+using Application.Features.Books.ViewModels;
+using Domain.Entities;
 
-namespace Application.Features.Lookups.Books.Commands.Create;
+namespace Application.Features.Books.Commands.Create;
 
 public class CreateBookCommand : IRequest<ResponseViewModel<BookViewModel>>
 {

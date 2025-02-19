@@ -1,4 +1,4 @@
-namespace Application.Features.Lookups.Books.Commands.Create;
+namespace Application.Features.Books.Commands.Create;
 
 public class CreateBookValidator : AbstractValidator<CreateBookCommand>
 {

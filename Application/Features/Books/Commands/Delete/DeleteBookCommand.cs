@@ -1,6 +1,6 @@
-using Application.Features.Lookups.Books.ViewModels;
+using Application.Features.Books.ViewModels;
 
-namespace Application.Features.Lookups.Books.Commands.Delete;
+namespace Application.Features.Books.Commands.Delete;
 
 public class DeleteBookCommand : IRequest<ResponseViewModel<BookViewModel>>
 {

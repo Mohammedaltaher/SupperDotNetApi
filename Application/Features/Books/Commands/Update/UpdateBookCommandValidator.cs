@@ -1,4 +1,4 @@
-namespace Application.Features.Lookups.Books.Commands.Update;
+namespace Application.Features.Books.Commands.Update;
 
 
 public class UpdateBookCommandValidator : AbstractValidator<UpdateBookCommand>
@@ -11,10 +11,10 @@ public class UpdateBookCommandValidator : AbstractValidator<UpdateBookCommand>
 
         RuleFor(command => command.Name)
             .NotEmpty().WithMessage("The Name cannot be empty.")
-            .When(command => string.IsNullOrEmpty(command.NameAr)); 
+            .When(command => string.IsNullOrEmpty(command.NameAr));
 
         RuleFor(command => command.NameAr)
             .NotEmpty().WithMessage("The NameAr cannot be empty.")
-            .When(command => string.IsNullOrEmpty(command.Name)); 
+            .When(command => string.IsNullOrEmpty(command.Name));
     }
 }

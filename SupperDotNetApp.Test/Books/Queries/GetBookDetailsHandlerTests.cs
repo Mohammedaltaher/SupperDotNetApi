@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
-using Application.Features.Lookups.Books.Queries.GetDetail;
-using Application.Features.Lookups.Books.ViewModels;
-using Domain.Entities.Lookups;
+using Application.Features.Books.Queries.GetDetail;
+using Application.Features.Books.ViewModels;
+using Domain.Entities;
 
 namespace Invoices.UnitTest.Books.Queries;
 

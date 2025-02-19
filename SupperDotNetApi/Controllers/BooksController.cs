@@ -1,10 +1,10 @@
 ﻿using Application.Contracts.Generic;
-using Application.Features.Lookups.Books.Commands.Create;
-using Application.Features.Lookups.Books.Commands.Delete;
-using Application.Features.Lookups.Books.Commands.Update;
-using Application.Features.Lookups.Books.Queries.GetDetail;
-using Application.Features.Lookups.Books.Queries.GetList;
-using Application.Features.Lookups.Books.ViewModels;
+using Application.Features.Books.Commands.Create;
+using Application.Features.Books.Commands.Delete;
+using Application.Features.Books.Commands.Update;
+using Application.Features.Books.Queries.GetDetail;
+using Application.Features.Books.Queries.GetList;
+using Application.Features.Books.ViewModels;
 using InvoiceManagement.API.Controllers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

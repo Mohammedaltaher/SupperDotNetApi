@@ -1,10 +1,10 @@
-﻿using Application.Features.Lookups.Books.Commands.Create;
-using Application.Features.Lookups.Books.Commands.Delete;
-using Application.Features.Lookups.Books.Commands.Update;
-using Application.Features.Lookups.Books.ViewModels;
-using Domain.Entities.Lookups;
+﻿using Application.Features.Books.Commands.Create;
+using Application.Features.Books.Commands.Delete;
+using Application.Features.Books.Commands.Update;
+using Application.Features.Books.ViewModels;
+using Domain.Entities;
 
-namespace Application.Profiles.Lookups;
+namespace Application.Profiles;
 
 public class BookProfile : Profile
 {

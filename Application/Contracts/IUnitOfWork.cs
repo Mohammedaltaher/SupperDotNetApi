@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Lookups;
+﻿using Domain.Entities;
 
 namespace Application.Contracts;
 

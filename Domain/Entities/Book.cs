@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities.Lookups;
+﻿namespace Domain.Entities;
 
 public class Book : BaseEntity
 {

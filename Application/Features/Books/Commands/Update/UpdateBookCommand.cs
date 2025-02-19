@@ -1,6 +1,6 @@
-using Application.Features.Lookups.Books.ViewModels;
+using Application.Features.Books.ViewModels;
 
-namespace Application.Features.Lookups.Books.Commands.Update;
+namespace Application.Features.Books.Commands.Update;
 
 public class UpdateBookCommand : IRequest<ResponseViewModel<BookViewModel>>
 {

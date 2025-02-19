@@ -1,7 +1,4 @@
-namespace Application.Features.Lookups.Books.Queries.GetDetail;
-
-using Application.Features.Lookups.Books.Commands.Delete;
-
+namespace Application.Features.Books.Queries.GetDetail;
 public class DeleteBookCommandValidator : AbstractValidator<GetBookDetailsQuery>
 {
     public DeleteBookCommandValidator()

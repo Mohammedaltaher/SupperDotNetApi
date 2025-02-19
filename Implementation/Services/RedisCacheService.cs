@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Application.Contracts;
+﻿using Application.Contracts;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 

@@ -1,8 +1,8 @@
 ﻿
 using System.Linq.Expressions;
-using Application.Features.Lookups.Books.Commands.Create;
-using Application.Features.Lookups.Books.ViewModels;
-using Domain.Entities.Lookups;
+using Application.Features.Books.Commands.Create;
+using Application.Features.Books.ViewModels;
+using Domain.Entities;
 
 namespace Invoices.UnitTest.Books.Commands;
 

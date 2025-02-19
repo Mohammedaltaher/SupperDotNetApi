@@ -1,5 +1,4 @@
-
-namespace Application.Features.Lookups.Books.Commands.Delete;
+namespace Application.Features.Books.Commands.Delete;
 
 public class DeleteBookCommandValidator : AbstractValidator<DeleteBookCommand>
 {

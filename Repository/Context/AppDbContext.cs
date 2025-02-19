@@ -1,5 +1,5 @@
 ﻿
-using Domain.Entities.Lookups;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
