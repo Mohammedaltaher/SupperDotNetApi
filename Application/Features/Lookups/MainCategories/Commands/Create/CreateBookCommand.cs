@@ -27,8 +27,7 @@ public class CreateBookCommand : IRequest<ResponseViewModel<BookViewModel>>
             if (isSaved == 0)
                 return new ResponseViewModel<BookViewModel>(FeedBackCode.NotAccept);
 
-            var createdBook = await _unitOfWork.Book.GetAsync(x => x.Id == BookModel.Id);
-            return new ResponseViewModel<BookViewModel>(FeedBackCode.OK, _mapper.Map<BookViewModel>(createdBook));
+            return new ResponseViewModel<BookViewModel>(FeedBackCode.OK, _mapper.Map<BookViewModel>(BookModel));
         }
     }
 }
